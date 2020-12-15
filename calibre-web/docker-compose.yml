@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  calibre-web:
+    image: technosoft2000/calibre-web:v1.5.0
+    container_name: calibre-web
+    restart: always
+    volumes:
+      - ${CALIBRE_BOOKS_ROOT}:/books
+      - ${CALIBRE_WEB}:/calibre-web
+    environment:
+      - USE_CONFIG_DIR=true
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
+      - PGID=65539
+      - PUID=1029
+    ports:
+      - 8083:8083
+    networks:
+      - calibre-web
+
+networks:
+  calibre-web:
+    external: false
